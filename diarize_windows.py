@@ -58,13 +58,42 @@ def convert_audio_format(input_file, output_wav):
         print("Download from: https://www.gyan.dev/ffmpeg/builds/")
         sys.exit(1)
 
-def main(audio_file, config_path="diar_infer_meeting.yaml"):
+def check_offline_mode():
+    """Check if we're running in offline mode with pre-downloaded models."""
+    models_dir = Path("models")
+    required_models = [
+        "vad_multilingual_marblenet.nemo",
+        "titanet_large.nemo"
+    ]
+
+    if not models_dir.exists():
+        return False
+
+    # Check if required models exist
+    for model_file in required_models:
+        if not (models_dir / model_file).exists():
+            return False
+
+    return True
+
+def main(audio_file, config_path=None):
     """Main diarization function."""
 
     # Check if audio file exists
     if not os.path.exists(audio_file):
         print(f"ERROR: Audio file not found: {audio_file}")
         sys.exit(1)
+
+    # Auto-detect offline mode and select appropriate config
+    offline_mode = check_offline_mode()
+
+    if config_path is None:
+        if offline_mode:
+            config_path = "diar_infer_meeting_offline.yaml"
+            print("✓ Offline mode detected - using local models")
+        else:
+            config_path = "diar_infer_meeting.yaml"
+            print("⚠ Online mode - models will be downloaded from internet")
 
     # Check if config file exists
     if not os.path.exists(config_path):
@@ -75,6 +104,7 @@ def main(audio_file, config_path="diar_infer_meeting.yaml"):
     print("NeMo Speaker Diarization")
     print("=" * 60)
     print(f"Input audio: {audio_file}")
+    print(f"Config file: {config_path}")
 
     # Convert to WAV if needed
     audio_path = Path(audio_file)
@@ -125,9 +155,16 @@ def main(audio_file, config_path="diar_infer_meeting.yaml"):
     except Exception as e:
         print(f"\nERROR during diarization: {e}")
         print("\nTroubleshooting:")
-        print("1. Make sure you have internet connection (models need to be downloaded)")
-        print("2. Check that your audio file is valid")
-        print("3. Ensure you have enough disk space")
+
+        if offline_mode:
+            print("1. Verify all model files exist in the 'models' folder")
+            print("2. Check that your audio file is valid")
+            print("3. Ensure you have enough disk space")
+        else:
+            print("1. Make sure you have internet connection (models need to be downloaded)")
+            print("2. If offline, download models using download_models.py on an internet-connected machine")
+            print("3. Check that your audio file is valid")
+            print("4. Ensure you have enough disk space")
         sys.exit(1)
 
 if __name__ == "__main__":
@@ -136,10 +173,13 @@ if __name__ == "__main__":
         print("\nSupported formats: wav, mp3, mp4, m4a")
         print("\nExample:")
         print("  python diarize_windows.py my_audio.wav")
-        print("  python diarize_windows.py my_audio.mp3 diar_infer_meeting.yaml")
+        print("  python diarize_windows.py my_audio.mp3 diar_infer_meeting_offline.yaml")
+        print("\nNote: Config file is auto-detected based on presence of 'models' folder")
+        print("      - With models folder: uses diar_infer_meeting_offline.yaml")
+        print("      - Without models folder: uses diar_infer_meeting.yaml (requires internet)")
         sys.exit(1)
 
     audio_file = sys.argv[1]
-    config_file = sys.argv[2] if len(sys.argv) > 2 else "diar_infer_meeting.yaml"
+    config_file = sys.argv[2] if len(sys.argv) > 2 else None
 
     main(audio_file, config_file)

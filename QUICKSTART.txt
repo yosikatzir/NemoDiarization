@@ -3,8 +3,15 @@
 ║                    Windows 10 Package                        ║
 ╚══════════════════════════════════════════════════════════════╝
 
-BEFORE YOU START:
------------------
+⚠ IMPORTANT: OFFLINE MACHINE?
+-------------------------------
+If your Windows 10 machine has NO INTERNET ACCESS:
+→ See README_OFFLINE_SETUP.md for complete offline setup guide
+→ You need to download models on another machine first
+→ Then use install_windows_offline.bat
+
+BEFORE YOU START (ONLINE MODE):
+--------------------------------
 1. Install Python 3.8+ from: https://www.python.org/downloads/
    ⚠ CHECK "Add Python to PATH" during installation!
 
@@ -42,11 +49,18 @@ USING THE DIARIZATION TOOL:
 3. Results will be in the "output" folder
 
 
-FIRST RUN:
-----------
+FIRST RUN (ONLINE MODE):
+------------------------
 - First time will download AI models (~500MB-1GB)
 - This happens only once
 - Subsequent runs will be faster
+- ⚠ Requires internet connection!
+
+OFFLINE MODE:
+-------------
+- If 'models' folder exists, automatically uses offline mode
+- No internet needed after setup
+- See README_OFFLINE_SETUP.md for details
 
 
 EXAMPLE:
@@ -56,7 +70,9 @@ C:\NemoDiarization> run_diarization.bat meeting_recording.mp3
 
 NEED HELP?
 ----------
-Read README_WINDOWS.md for detailed instructions and troubleshooting
+- Online setup: README_WINDOWS.md
+- Offline setup: README_OFFLINE_SETUP.md
+- Troubleshooting: Both README files have troubleshooting sections
 
 
 WHAT IT DOES:

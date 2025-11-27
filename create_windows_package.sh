@@ -13,10 +13,14 @@ echo
 FILES=(
     "diarize_windows.py"
     "diar_infer_meeting.yaml"
+    "diar_infer_meeting_offline.yaml"
     "requirements.txt"
     "install_windows.bat"
+    "install_windows_offline.bat"
     "run_diarization.bat"
+    "download_models.py"
     "README_WINDOWS.md"
+    "README_OFFLINE_SETUP.md"
     "QUICKSTART.txt"
 )
 
