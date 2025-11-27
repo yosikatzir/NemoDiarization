@@ -1,0 +1,69 @@
+╔══════════════════════════════════════════════════════════════╗
+║         NeMo Diarization - Quick Start Guide                ║
+║                    Windows 10 Package                        ║
+╚══════════════════════════════════════════════════════════════╝
+
+BEFORE YOU START:
+-----------------
+1. Install Python 3.8+ from: https://www.python.org/downloads/
+   ⚠ CHECK "Add Python to PATH" during installation!
+
+2. Install FFmpeg from: https://www.gyan.dev/ffmpeg/builds/
+   - Download "ffmpeg-release-essentials.zip"
+   - Extract and add to system PATH
+   (Required for MP3/MP4/M4A support)
+
+
+INSTALLATION (ONE-TIME SETUP):
+-------------------------------
+1. Extract this ZIP to a folder (e.g., C:\NemoDiarization)
+
+2. Open Command Prompt in that folder:
+   - In File Explorer, type "cmd" in the address bar
+
+3. Run the installer:
+
+   install_windows.bat
+
+4. Wait 10-20 minutes for installation to complete
+   (Downloads ~2-3 GB of dependencies)
+
+
+USING THE DIARIZATION TOOL:
+----------------------------
+1. Put your audio file in the NemoDiarization folder
+
+2. Run:
+
+   run_diarization.bat your_audio.wav
+
+   Supported formats: .wav .mp3 .mp4 .m4a
+
+3. Results will be in the "output" folder
+
+
+FIRST RUN:
+----------
+- First time will download AI models (~500MB-1GB)
+- This happens only once
+- Subsequent runs will be faster
+
+
+EXAMPLE:
+--------
+C:\NemoDiarization> run_diarization.bat meeting_recording.mp3
+
+
+NEED HELP?
+----------
+Read README_WINDOWS.md for detailed instructions and troubleshooting
+
+
+WHAT IT DOES:
+-------------
+Analyzes your audio file and tells you:
+- Who spoke when
+- How many speakers detected
+- Timestamps for each speaker segment
+
+Output format: RTTM files + JSON results
