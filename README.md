@@ -13,11 +13,13 @@ Speaker diarization is the process of partitioning an audio stream into homogene
 ## 🎯 Features
 
 - ✅ No GPU required (CPU-only inference)
+- ✅ **Language-independent** (Hebrew עברית, English, Arabic العربية, any language!)
 - ✅ Automatic VAD (Voice Activity Detection)
 - ✅ Automatic speaker counting
 - ✅ Multi-speaker support (up to 12 speakers)
 - ✅ RTTM output format
 - ✅ Pre-configured for meeting/conversation audio
+- ✅ **Minimal installation option** (~1.3GB, no C++ Build Tools needed!)
 
 ## 📁 Project Structure
 
@@ -34,7 +36,29 @@ NemoDiarization/
 
 ## 🚀 Quick Start (Windows)
 
-### Option 1: Automated Installation (Recommended)
+### ⭐ NEW: Minimal Installation (Hebrew / Diarization-Only)
+
+**Perfect if you:**
+- Have Hebrew audio (עברית) or any non-English language
+- Only need speaker timestamps (not transcription)
+- Want to avoid C++ Build Tools installation
+- Want smaller/faster installation (~1.3GB vs ~3GB)
+
+**For standard networks:**
+```cmd
+install_windows_minimal_diarization.bat
+```
+
+**For corporate networks:**
+```cmd
+install_windows_minimal_corporate.bat
+```
+
+**📖 Full guide:** [README_MINIMAL_HEBREW.md](README_MINIMAL_HEBREW.md)
+
+---
+
+### Option 1: Full Installation (With English ASR/Transcription)
 
 **For standard networks:**
 ```cmd

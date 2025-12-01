@@ -1,0 +1,103 @@
+# Minimal NeMo Speaker Diarization Requirements (NO ASR)
+# For Hebrew or any language - ASR-free diarization only
+#
+# This installs ONLY what's needed for speaker diarization:
+# - Who spoke when (timestamps)
+# - Speaker labels (speaker_0, speaker_1, etc.)
+# - RTTM output format
+#
+# This does NOT install:
+# - ASR/transcription capabilities
+# - Language models
+# - Text processing libraries
+# - Training dependencies
+#
+# Installation size: ~800MB vs ~2GB with ASR
+#
+# Install with:
+#   1. First install PyTorch: pip install -r requirements_stage1_pytorch.txt
+#   2. Then this file: pip install -r requirements_minimal_diarization_only.txt --trusted-host nexuspro
+
+--trusted-host pypi.org
+--trusted-host files.pythonhosted.org
+
+# Core NeMo (without [asr] extras - much lighter!)
+nemo-toolkit==2.5.3
+
+# Audio Processing Libraries
+librosa>=0.10.1
+soundfile>=0.12.1
+resampy>=0.4.3
+audioread>=2.1.9
+
+# Diarization-Specific
+pyannote.core>=5.0.0
+pyannote.metrics>=3.2.1
+
+# Scientific Computing
+scipy>=1.13.0
+scikit-learn>=1.5.0
+numba>=0.60.0
+
+# Configuration Management
+omegaconf<=2.3.0
+hydra-core<=1.3.2
+
+# PyTorch Lightning (required by NeMo)
+pytorch-lightning>=2.2.1,<=2.4.0
+torchmetrics>=0.11.0
+lightning-utilities>=0.10.0
+
+# File System and Data
+fsspec==2024.12.0
+webdataset>=0.2.86
+
+# Utilities
+tqdm>=4.41.0
+packaging
+python-dateutil
+ruamel.yaml
+text-unidecode
+wrapt
+wget
+
+# Clustering and Optimization
+optuna
+marshmallow
+
+# Signal Processing
+pyloudnorm
+pydub
+
+# Progress and Logging
+protobuf~=5.29.5
+tensorboard
+
+# ONNX Support
+onnx>=1.7.0
+
+# NeMo Telemetry (required)
+nv_one_logger_core>=2.3.1
+nv_one_logger_training_telemetry>=2.3.1
+nv_one_logger_pytorch_lightning_integration>=2.3.1
+
+# Hugging Face Hub (for model downloads)
+huggingface_hub>=0.24
+
+# Note: This skips ALL ASR dependencies:
+# - NO transformers (saves ~500MB)
+# - NO datasets
+# - NO sentencepiece
+# - NO jiwer, editdistance
+# - NO lhotse
+# - NO whisper_normalizer
+# - NO num2words, sacremoses
+# - NO ctc_segmentation (no C++ compilation needed!)
+# - NO texterrors (no C++ compilation needed!)
+# - NO kaldi-python-io
+# - NO sox
+# - NO einops, braceexpand
+# - NO mediapy, inflect, cloudpickle, fiddle, peft, wandb
+
+# Total installation: ~800MB vs ~2GB with full [asr] extras
+# No C++ Build Tools required!
