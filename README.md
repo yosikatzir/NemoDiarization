@@ -34,40 +34,63 @@ NemoDiarization/
 
 ## 🚀 Quick Start (Windows)
 
-### Option 1: Automated Installation
+### Option 1: Automated Installation (Recommended)
 
-1. **Run the installation script:**
-   ```cmd
-   install_windows.bat
-   ```
+**For standard networks:**
+```cmd
+install_windows.bat
+```
 
-2. **Verify installation:**
-   ```cmd
-   python test_import.py
-   ```
+**For corporate networks (with proxy/trusted host):**
+```cmd
+install_windows_corporate.bat
+```
 
-3. **Run diarization:**
-   - Place your audio file in the project directory
-   - Edit `diarize.py` and change `AUDIO_FILE = "audio2.wav"` to your file
-   - Run: `python diarize.py`
+The script will:
+- Install PyTorch CPU version first (~500MB)
+- Install NeMo and all dependencies (~1.5GB)
+- Verify the installation automatically
 
-### Option 2: Manual Installation
+### Option 2: Manual Installation (Two-Stage)
 
-1. **Install PyTorch CPU version:**
-   ```cmd
-   pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cpu
-   ```
+**⚠️ CRITICAL**: Installation order matters! PyTorch must be installed FIRST.
 
-2. **Install NeMo and dependencies:**
-   ```cmd
-   pip install nemo-toolkit[asr]==2.5.3
-   pip install -r requirements.txt
-   ```
+**Stage 1 - Install PyTorch CPU:**
+```cmd
+pip install -r requirements_stage1_pytorch.txt
+```
 
-3. **Verify:**
-   ```cmd
-   python test_import.py
-   ```
+*For corporate networks, add `--trusted-host nexuspro`:*
+```cmd
+pip install -r requirements_stage1_pytorch.txt --trusted-host nexuspro
+```
+
+**Stage 2 - Install NeMo:**
+```cmd
+pip install -r requirements_stage2_nemo.txt
+```
+
+*For corporate networks:*
+```cmd
+pip install -r requirements_stage2_nemo.txt --trusted-host nexuspro
+```
+
+**Verify:**
+```cmd
+python test_import.py
+```
+
+### Why Two-Stage Installation?
+
+Installing PyTorch CPU **before** NeMo:
+- ✅ Saves ~3GB (avoids downloading CUDA libraries)
+- ✅ Ensures CPU-only operation
+- ✅ Prevents version conflicts
+
+Installing NeMo first:
+- ❌ Downloads PyTorch with CUDA (~3GB wasted)
+- ❌ May install incompatible numpy version
+- ❌ Larger installation size
 
 ## 📊 System Requirements
 

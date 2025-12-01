@@ -1,0 +1,21 @@
+# Stage 1: PyTorch CPU Installation
+#
+# CRITICAL: This MUST be installed FIRST before nemo-toolkit
+# to avoid downloading 3GB+ of unnecessary CUDA dependencies
+#
+# Install with:
+#   pip install -r requirements_stage1_pytorch.txt --trusted-host nexuspro
+
+--index-url https://download.pytorch.org/whl/cpu
+--trusted-host download.pytorch.org
+--trusted-host pypi.org
+--trusted-host files.pythonhosted.org
+
+# PyTorch CPU-only versions (saves ~3GB vs CUDA version)
+torch==2.5.1
+torchvision==0.20.1
+torchaudio==2.5.1
+
+# NumPy MUST be <2.0 for NeMo compatibility
+# Installing it here prevents NeMo from trying numpy 2.x first
+numpy>=1.24.0,<2.0.0

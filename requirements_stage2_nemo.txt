@@ -1,0 +1,16 @@
+# Stage 2: NeMo Toolkit Installation
+#
+# IMPORTANT: Install requirements_stage1_pytorch.txt FIRST!
+#
+# Install with:
+#   pip install -r requirements_stage2_nemo.txt --trusted-host nexuspro
+#
+# This file lets NeMo pull its dependencies automatically
+# PyTorch and numpy are already installed from Stage 1
+
+--trusted-host pypi.org
+--trusted-host files.pythonhosted.org
+
+# NeMo Toolkit with ASR support
+# This will install 100+ dependencies automatically
+nemo-toolkit[asr]==2.5.3
