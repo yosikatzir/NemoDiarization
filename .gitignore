@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+nemo_env/
+test_env/
+
+# NeMo artifacts
+output/
+*.rttm
+input_manifest.json
+*.json
+!diar_infer_meeting.yaml
+
+# Audio files
+*.wav
+*.mp3
+*.flac
+*.ogg
+
+# Model cache
+.cache/
+*.nemo
+*.ckpt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
