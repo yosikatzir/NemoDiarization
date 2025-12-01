@@ -17,9 +17,9 @@ def create_manifest(audio_path, manifest_path):
         f.write("\n")
 
 if __name__ == "__main__":
-    AUDIO_FILE = "audio2.wav"               # 👈 your input file
+    AUDIO_FILE = "audio2.wav"               # 👈 your input file (Hebrew or any language)
     MANIFEST_FILE = "input_manifest.json"   # auto-generated
-    CONFIG_PATH = "diar_infer_meeting.yaml"
+    CONFIG_PATH = "diar_infer_meeting_no_asr.yaml"  # No ASR - diarization only
 
     # create manifest dynamically
     create_manifest(AUDIO_FILE, MANIFEST_FILE)
