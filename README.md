@@ -101,6 +101,25 @@ Installing NeMo first:
 | **RAM** | 8GB minimum, 16GB recommended |
 | **Storage** | 2GB for dependencies + model cache |
 | **GPU** | Not required (CPU-only) |
+| **⚠️ C++ Build Tools** | **Required** - See installation notes below |
+
+### ⚠️ Important: Windows Prerequisites
+
+**NeMo requires Microsoft Visual C++ 14.0+ to compile some packages.**
+
+**Quick Check:**
+```cmd
+where cl.exe
+```
+
+If not found, install Visual Studio Build Tools:
+1. Download: https://visualstudio.microsoft.com/visual-cpp-build-tools/
+2. Install "Desktop development with C++"
+3. Restart terminal
+
+**Alternative solutions** (no compiler needed):
+- Use pre-built wheels - See `WINDOWS_CPP_BUILD_TOOLS_FIX.md`
+- Use Conda instead of pip - See `WINDOWS_CPP_BUILD_TOOLS_FIX.md`
 
 ## 🎵 Supported Audio Formats
 
@@ -163,6 +182,26 @@ Results are saved to `output/` directory:
 Format: `SPEAKER filename channel start_time duration <NA> <NA> speaker_label`
 
 ## 🐛 Troubleshooting
+
+### "Microsoft Visual C++ 14.0 or greater is required" ⚠️ COMMON ON WINDOWS
+
+**Error during installation:**
+```
+error: Microsoft Visual C++ 14.0 or greater is required.
+```
+
+**Solution:**
+See detailed solutions in `WINDOWS_CPP_BUILD_TOOLS_FIX.md`
+
+**Quick fix:**
+1. Install Visual Studio Build Tools: https://visualstudio.microsoft.com/visual-cpp-build-tools/
+2. Select "Desktop development with C++"
+3. Restart terminal and re-run installation
+
+**Or use the Build Tools checker script:**
+```cmd
+install_windows_corporate_with_buildtools_check.bat
+```
 
 ### "No matching distribution found for torch"
 

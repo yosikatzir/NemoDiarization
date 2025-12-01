@@ -1,0 +1,50 @@
+# Stage 2: NeMo Toolkit Installation (Without Build Tools)
+#
+# WORKAROUND for Windows systems without Visual C++ Build Tools
+#
+# This approach installs NeMo dependencies first, then handles
+# packages that need compilation separately
+#
+# Install with:
+#   pip install -r requirements_stage2_nemo_nocompile.txt --trusted-host nexuspro
+
+--trusted-host pypi.org
+--trusted-host files.pythonhosted.org
+
+# Install NeMo WITHOUT the asr extras first to avoid compilation issues
+# Then we'll handle problematic packages separately
+nemo-toolkit==2.5.3
+
+# ASR-specific dependencies that DON'T require compilation
+braceexpand
+editdistance
+einops
+jiwer>=3.1.0,<4.0.0
+lhotse!=1.31.0
+librosa>=0.10.1
+marshmallow
+optuna
+pyannote.core
+pyannote.metrics
+pydub
+pyloudnorm
+resampy
+scipy>=0.14
+soundfile
+whisper_normalizer
+num2words
+datasets
+inflect
+mediapy==1.1.6
+pandas
+sacremoses>=0.0.43
+sentencepiece<1.0.0
+
+# Packages that require compilation - SKIP for now
+# ctc_segmentation==1.7.4  # Requires MSVC - see WINDOWS_CPP_BUILD_TOOLS_FIX.md
+# texterrors<1.0.0  # Requires MSVC - see WINDOWS_CPP_BUILD_TOOLS_FIX.md
+# kaldi-python-io  # Requires MSVC - optional
+# sox<=1.5.0  # Requires MSVC - optional
+
+# Note: Without ctc_segmentation and texterrors, some NeMo features may be limited
+# See WINDOWS_CPP_BUILD_TOOLS_FIX.md for solutions to install these packages

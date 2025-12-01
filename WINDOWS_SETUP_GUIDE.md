@@ -7,6 +7,30 @@ This guide will help you set up NeMo speaker diarization on a Windows machine wi
 - **Python 3.11.0** (or Python 3.11.x)
 - **Windows 7, 8, 10, or 11** (64-bit)
 - **No GPU required** (CPU-only setup)
+- **⚠️ Microsoft Visual C++ 14.0+** (Required for compiling C extensions)
+
+### Installing Visual C++ Build Tools
+
+**Why needed:** NeMo requires compiling C extensions for `ctc_segmentation` and `texterrors` packages.
+
+**Installation:**
+1. Download Visual Studio Build Tools: https://visualstudio.microsoft.com/visual-cpp-build-tools/
+2. Run installer
+3. Select "Desktop development with C++"
+4. Install (~7GB download)
+5. Restart your terminal
+
+**Verify installation:**
+```cmd
+where cl.exe
+```
+
+Should show path to `cl.exe` (e.g., `C:\Program Files (x86)\Microsoft Visual Studio\...\cl.exe`)
+
+**Alternative:** If you cannot install Build Tools, see `WINDOWS_CPP_BUILD_TOOLS_FIX.md` for:
+- Pre-built wheels (no compiler needed)
+- Conda installation
+- Other workarounds
 
 ## Important Notes
 
